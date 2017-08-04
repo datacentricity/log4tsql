@@ -5,7 +5,9 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dacpacs", "dacpacs", "{2AF45DE5-8397-4AFA-A8F9-ED0DF9104014}"
 	ProjectSection(SolutionItems) = preProject
+		dacpacs\Log4TSql_2005.dacpac = dacpacs\Log4TSql_2005.dacpac
 		dacpacs\Log4TSql_SQL2008.dacpac = dacpacs\Log4TSql_SQL2008.dacpac
+		dacpacs\tSQLt_SAFE_2012.dacpac = dacpacs\tSQLt_SAFE_2012.dacpac
 	EndProjectSection
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Log4TSql_2005", "Log4TSql_2005\Log4TSql_2005.sqlproj", "{BB317214-6335-420B-A8B1-FDDA02C062EC}"
@@ -13,6 +15,21 @@ EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Log4TSql_2008", "Log4TSql_2008\Log4TSql_2008.sqlproj", "{8258B280-82ED-426C-9E6E-DE9D5F137BA5}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Log4TSql_Common", "Log4TSql_Common\Log4TSql_Common.sqlproj", "{97676EFF-36DE-4870-B703-C6CB46E16977}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Log4TSql_Common_Tests", "Log4TSql_Common_Tests\Log4TSql_Common_Tests.sqlproj", "{F6765D9A-DA92-408E-A42F-2B49FBD25FEA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SchemaComparisons", "SchemaComparisons", "{86A89D5A-DCA6-4431-9DB1-9A80382F6370}"
+	ProjectSection(SolutionItems) = preProject
+		SchemaComparisons\Log4TSql_Common.scmp = SchemaComparisons\Log4TSql_Common.scmp
+		SchemaComparisons\Log4TSql_Common_Tests.scmp = SchemaComparisons\Log4TSql_Common_Tests.scmp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Releases", "Releases", "{1CEEF4F9-37B0-4227-9E53-CFA853C6A10A}"
+	ProjectSection(SolutionItems) = preProject
+		Releases\Log4TSql v1.0.0 to v2.0.0.migrate.sql = Releases\Log4TSql v1.0.0 to v2.0.0.migrate.sql
+		Releases\Log4TSql v1.0.0.deploy.sql = Releases\Log4TSql v1.0.0.deploy.sql
+		Releases\Log4TSql v2.0.0.deploy.sql = Releases\Log4TSql v2.0.0.deploy.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +55,12 @@ Global
 		{97676EFF-36DE-4870-B703-C6CB46E16977}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97676EFF-36DE-4870-B703-C6CB46E16977}.Release|Any CPU.Build.0 = Release|Any CPU
 		{97676EFF-36DE-4870-B703-C6CB46E16977}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{F6765D9A-DA92-408E-A42F-2B49FBD25FEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6765D9A-DA92-408E-A42F-2B49FBD25FEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6765D9A-DA92-408E-A42F-2B49FBD25FEA}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{F6765D9A-DA92-408E-A42F-2B49FBD25FEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6765D9A-DA92-408E-A42F-2B49FBD25FEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6765D9A-DA92-408E-A42F-2B49FBD25FEA}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

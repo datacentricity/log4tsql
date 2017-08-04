@@ -14,8 +14,8 @@
     </RootPath>
     <RootNamespace>Log4TSql_Common</RootNamespace>
     <AssemblyName>Log4TSql_Common</AssemblyName>
-    <ModelCollation>1033, CI</ModelCollation>
-    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <TargetLanguage>CS</TargetLanguage>
@@ -24,6 +24,9 @@
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
     <DefaultSchema>log4</DefaultSchema>
+    <IncludeSchemaNameInFileName>True</IncludeSchemaNameInFileName>
+    <DefaultCollation>Latin1_General_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -58,5 +61,38 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="Tables\" />
+    <Folder Include="Functions\" />
+    <Folder Include="Stored Procedures\" />
+    <Folder Include="Security\" />
+    <Folder Include="Static Data" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\log4Private.JournalControl.sql" />
+    <Build Include="Tables\log4Private.Severity.sql" />
+    <Build Include="Tables\log4Private.SqlException.sql" />
+    <Build Include="Tables\log4Private.Journal.sql" />
+    <Build Include="Tables\log4Private.JournalDetail.sql" />
+    <Build Include="Functions\log4.GetJournalControl.sql" />
+    <Build Include="Functions\log4.FormatElapsedTime.sql" />
+    <Build Include="Stored Procedures\log4Private.SessionInfoOutput.sql" />
+    <Build Include="Stored Procedures\log4.ExceptionHandler.sql" />
+    <Build Include="Stored Procedures\log4.JournalWriter.sql" />
+    <Build Include="Stored Procedures\log4Utils.ExceptionReader.sql" />
+    <Build Include="Stored Procedures\log4Utils.JournalReader.sql" />
+    <Build Include="Stored Procedures\log4Utils.PrintString.sql" />
+    <Build Include="Stored Procedures\log4Utils.JournalPrinter.sql" />
+    <Build Include="Stored Procedures\log4Utils.JournalCleanup.sql" />
+    <Build Include="Security\log4.sql" />
+    <Build Include="Security\log4Private.sql" />
+    <Build Include="Security\log4Utils.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Static Data\log4Private.JournalControl.data.sql" />
+    <None Include="Static Data\log4Private.Severity.data.sql" />
+    <None Include="Log4TSql_Common.sandbox.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script.PostDeployment.sql" />
   </ItemGroup>
 </Project>

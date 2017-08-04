@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>Log4TSql_Common_Tests</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{f6765d9a-da92-408e-a42f-2b49fbd25fea}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>Log4TSql_Common_Tests</RootNamespace>
+    <AssemblyName>Log4TSql_Common_Tests</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchema</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>Latin1_General_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="CommonModuleTests\" />
+    <Folder Include="Test Classes" />
+    <Folder Include="CommonSchemaTests\" />
+    <Folder Include="StaticDataTests\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="CommonModuleTests\test SessionInfoOutput outputs correct session info.sql" />
+    <Build Include="Test Classes\CommonModuleTests.sql" />
+    <Build Include="CommonSchemaTests\test log4Private.JournalDetail.Id primary key is unique.sql" />
+    <Build Include="CommonSchemaTests\test log4Private.Journal.Id primary key is unique.sql" />
+    <Build Include="CommonSchemaTests\test log4Private.SqlException.Id primary key is unique.sql" />
+    <Build Include="CommonSchemaTests\test log4Private.SqlException column structure.sql" />
+    <Build Include="CommonSchemaTests\test log4Private.Severity column structure.sql" />
+    <Build Include="CommonSchemaTests\test log4Private.JournalDetail column structure.sql" />
+    <Build Include="CommonSchemaTests\test log4Private.JournalControl column structure.sql" />
+    <Build Include="CommonSchemaTests\test log4Private.Journal.Task defaults to empty string.sql" />
+    <Build Include="CommonSchemaTests\test log4Private.Journal.Id auto increments.sql" />
+    <Build Include="CommonSchemaTests\test log4Private.Journal column structure.sql" />
+    <Build Include="CommonSchemaTests\test log4Private.SqlException.Id auto increments.sql" />
+    <Build Include="CommonSchemaTests\test log4Private.Journal.ExceptionId must exist in parent table.sql" />
+    <Build Include="CommonSchemaTests\test log4Private.Journal.SeverityId must exist in parent table.sql" />
+    <Build Include="CommonSchemaTests\test log4Private.JournalDetail.JournalId must exist in parent table.sql" />
+    <Build Include="CommonSchemaTests\test log4Private.Severity.Name unique key is unique.sql" />
+    <Build Include="CommonSchemaTests\test log4Private.Journal.UtcDate defaults to UTC insert date-time.sql" />
+    <Build Include="CommonSchemaTests\test log4Private.Journal.SystemDate defaults to local system insert date-time.sql" />
+    <Build Include="CommonSchemaTests\test log4Private.SqlException.SystemDate defaults to local system insert date-time.sql" />
+    <Build Include="CommonSchemaTests\test log4Private.SqlException.UtcDate defaults to UTC insert date-time.sql" />
+    <Build Include="CommonSchemaTests\test log4Private.JournalControl.OnOffSwitch rejects empty string.sql" />
+    <Build Include="CommonSchemaTests\test log4Private.JournalControl.ModuleName primary key is unique.sql" />
+    <Build Include="CommonSchemaTests\test log4Private.JournalControl.OnOffSwitch allows _ON_ or _OFF_.sql" />
+    <Build Include="CommonSchemaTests\test log4Private.Severity.Id primary key is unique.sql" />
+    <Build Include="Test Classes\CommonSchemaTests.sql" />
+    <Build Include="StaticDataTests\test log4Private.JournalControl static data.sql" />
+    <Build Include="StaticDataTests\test log4Private.Severity static data.sql" />
+    <Build Include="StaticDataTests.sql" />
+    <Build Include="CommonModuleTests\test log4.ExceptionHandler calls log4Private.SessionInfoOutput.sql" />
+    <Build Include="CommonModuleTests\test log.ExceptionHandler inserts columns in correct order.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Log4TSql_Common\Log4TSql_Common.sqlproj">
+      <Name>Log4TSql_Common</Name>
+      <Project>{97676eff-36de-4870-b703-c6cb46e16977}</Project>
+      <Private>True</Private>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ArtifactReference Include="..\dacpacs\tSQLt_SAFE_2012.dacpac">
+      <HintPath>..\dacpacs\tSQLt_SAFE_2012.dacpac</HintPath>
+      <SuppressMissingDependenciesErrors>True</SuppressMissingDependenciesErrors>
+    </ArtifactReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script.PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Log4TSql_Common_Tests.sandbox.publish.xml" />
+  </ItemGroup>
+</Project>
