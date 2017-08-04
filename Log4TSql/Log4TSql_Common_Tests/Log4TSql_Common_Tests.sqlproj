@@ -93,9 +93,9 @@
     <Build Include="Test Classes\CommonSchemaTests.sql" />
     <Build Include="StaticDataTests\test log4Private.JournalControl static data.sql" />
     <Build Include="StaticDataTests\test log4Private.Severity static data.sql" />
-    <Build Include="StaticDataTests.sql" />
     <Build Include="CommonModuleTests\test log4.ExceptionHandler calls log4Private.SessionInfoOutput.sql" />
     <Build Include="CommonModuleTests\test log.ExceptionHandler inserts columns in correct order.sql" />
+    <Build Include="Test Classes\StaticDataTests.sql" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Log4TSql_Common\Log4TSql_Common.sqlproj">
