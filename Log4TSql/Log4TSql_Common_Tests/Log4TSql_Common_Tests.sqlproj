@@ -96,6 +96,13 @@
     <Build Include="CommonModuleTests\test log4.ExceptionHandler calls log4Private.SessionInfoOutput.sql" />
     <Build Include="CommonModuleTests\test log.ExceptionHandler inserts columns in correct order.sql" />
     <Build Include="Test Classes\StaticDataTests.sql" />
+    <Build Include="CommonModuleTests\test log4.ExceptionHandler outputs new ExceptionId.sql" />
+    <Build Include="CommonModuleTests\test log4.ExceptionHandler outputs correct error info.sql" />
+    <Build Include="CommonModuleTests\test log.ExceptionHandler identifies current database.sql" />
+    <Build Include="CommonModuleTests\test log.ExceptionHandler changes null %40ErrorContext to empty string.sql" />
+    <Build Include="CommonModuleTests\test log.ExceptionHandler allows custom error procedure name.sql" />
+    <Build Include="CommonModuleTests\test log4.ExceptionHandler replaces any null error info.sql" />
+    <Build Include="CommonModuleTests\test log4.ExceptionHandler outputs correct ReturnMessage on null error info.sql" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Log4TSql_Common\Log4TSql_Common.sqlproj">
