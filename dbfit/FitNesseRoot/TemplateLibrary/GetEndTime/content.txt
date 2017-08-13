@@ -1,0 +1,4 @@
+'''Get the current date/time from the database'''
+!|Query|SELECT GETDATE() AS [EndTime]|
+|endTime?|
+|>>endTime|

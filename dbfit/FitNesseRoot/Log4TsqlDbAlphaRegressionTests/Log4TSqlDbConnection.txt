@@ -1,0 +1,8 @@
+# DBFit connection properties file
+#
+#1) Either specify full connection string
+#connection-string=
+#
+#2) OR specify service, username and password as separate properties
+
+connection-string=Data Source=(local);Initial Catalog=Log4TSql_Common_tests;Integrated Security=SSPI;Application Name=DbFit

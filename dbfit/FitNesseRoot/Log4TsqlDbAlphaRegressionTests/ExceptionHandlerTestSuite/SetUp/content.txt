@@ -1,0 +1,4 @@
+!|dbfit.SqlServerTest|
+!|ConnectUsingFile|.\FitnesseRoot\Log4TsqlDbAlphaRegressionTests\Log4TSqlDbConnection.txt|
+|set option|command timeout|900|
+|set option|fixed length string parsing|true|

@@ -1,0 +1,18 @@
+Use the Setup page to define the test environment (SQL Server in this case) and initiate the connection which is then shared by all tests in this suite.
+This implies that all the tests in a suite should point to a single server and database (even though the underlying queries may reference other databases on the same server) and this is correct.
+
+'''Generally, any Setup page will contain the following table fixtures:'''
+!|dbfit.SqlServerTest|
+!|ConnectUsingFile|.\FitnesseRoot\TutorialTestSuite\Log4TSqlDb2008Connection.txt|
+
+#!|Connect|Data Source=DATA-CENTRIC-V3,50505;Initial Catalog=Log4TSql;Integrated Security=SSPI|
+
+The Setup page is also where you can define options that will be common to all tests in this suite.
+
+One of the more useful options is to extend to command timeout (in seconds) so that long-running tests do not throw exceptions. We split functional testing (where we don't care how long a query takes) and performance testing where duration is important.
+
+Another useful option is telling Dbfit how to handle char and nchar data types.  By default, Fitnesse trims trailing spaces from strings but SQL Server will return spaces in results sets with fixed length strings. There are two steps to address this problem, 1) set the option below and 2) in expected result set tables, wrap fixed length strings in single quotes e.g. 'Customer Name '
+
+'''The following options may commonly be found in functional test setup pages but are not mandatory'''
+|set option|command timeout|900|
+|set option|fixed length string parsing|true|

@@ -1,4 +1,4 @@
-﻿CREATE procedure [CommonModuleTests].[test SessionInfoOutput outputs correct session info]
+﻿create procedure [CommonModuleTests].[test log4Private.SessionInfoOutput outputs correct session info]
 as
 begin
 	--! Assemble

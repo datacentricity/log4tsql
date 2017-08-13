@@ -1,0 +1,57 @@
+!2 Getting Started with Dbfit for Log4TSql Database
+
+###################################################################################################
+#
+!3 Introduction
+#
+###################################################################################################
+
+Dbfit is type of wiki that allows database regression tests to be written in a non-technical way (e.g. by users) and is presented as a set of HTML pages.  Dbfit also lends itself to use by database developers needing to create re-runnable integration tests.  The resulting test definitions can be added to source control to be shared with the entire team.
+
+###################################################################################################
+#
+!3 Fixtures
+#
+###################################################################################################
+
+Fitnesse (on which Dbfit is based) uses "fixtures" to specify settings, commands, parameters and data for input or expected output.  Simple examples of these fixtures can be found throughout this section of the wiki. Each "fixture" is written in the form of a pipe-separated list of cells which are then displayed as a table on the HTML page.  These table fixtures are interpreted by Dbfit/Fitnesse and the indicated settings or actions are implemented.
+
+For example, this simple fixture defines a value for the productId parameter:
+{{{
+|Set Parameter|productId|12345678|
+}}}
+... and is displayed like this:
+|Set Parameter|productId|12345678|
+Notice that the parameter name starts with a lowercase letter.  If it started with a "P" instead of a "p", Dbfit will try and interpret it as a wiki page. Page names must always be pascal case, starting with a capital letter, followed by at least one lower case letter and contain at least one more upper case letter.  These are automatically shown as links within this wiki e.g. ReadMeFirst is this page you are reading right now.
+
+So starting a parameter name with an upper case letter just confuses the wiki and is bad practice, e.g.
+|Set Parameter|CustomerId|87654321|
+
+###################################################################################################
+#
+!3 Pages and Tests
+#
+###################################################################################################
+
+The dbfit wiki supports three types of "page":
+
+ * '''Suite''' - This is effectively a container for other pages - for example a suite of test pages.  A suite page should never contain test fixtures but may contain other information or occasionally non-test fixtures common to the tests in that suite. A suite can also contain other suites - called a sub-wiki.
+
+ * '''Static''' - This type of page is used for information pages such as this one and also for Setup and Teardown pages which are described in more detail below. Static pages must not contain tests, and even if they do, the tests will not run.
+
+ * '''Test''' - A Test page contains one or more tests although generally should only contain one test.  The test itself is defined using a number of fixtures to specify test conditions, commands to run and expected outcomes.
+
+A '''Setup''' page is a special kind of static page added to a suite that can contain fixtures shared with all tests in the suite.  This can include common options or setting up the database connection (to save repeating the same fixtures in all related tests).
+The fixtures in the setup page are executed before every single test in the corresponding suite.  See SetUp in this example test suite for specific examples.
+
+A '''Teardown''' page is another kind of static page that contains fixtures that will be run on completion of every single test. For example, rolling back any changes when running tests in "standalone" mode.  Generally speaking, all Log4TSql tests will be written in "flow" mode and rollbacks are implemented automatically - see .#transactions below.
+
+Other static page types include Suite-Setup and Suite-Teardown but these are beyond the scope of this introductory tutorial.
+
+!anchor transactions
+!4 A word about transactions
+Each test page is executed within a transaction which is automatically rolled back on completion of the test or tests on that page. Any test precursors that run DML or DDL contained on the setup page are also run within that transaction and are also rolled back when the test page has completed.  If a Teardown page is present, that is run before any rollback.  '''NB:''' If a single test page contains multiple test fixtures, all those tests will be run within the same transaction.
+
+!3 Running Sample Tests
+The sample tests in this test suite all run. However, you will need to ensure that the pre-requisites are set up in a database called Log4TSql on the target server first.  You will find the demo setup script in SVN at !-../trunk/DbFit/Scripts/DbFitDemoDb.SetUp.sql-!.
+

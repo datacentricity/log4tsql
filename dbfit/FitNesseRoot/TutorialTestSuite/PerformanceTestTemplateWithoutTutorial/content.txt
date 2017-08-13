@@ -1,0 +1,19 @@
+!3 Expect CRMCORESTG.dbFitDemo.usp_PerformanceTimingTest to complete in less than 2 seconds
+
+'''Define the maximum number of seconds for this command'''
+|Set parameter|maxDuration|2|
+
+'''Get the current date/time from the database'''
+!|Query|SELECT GETUTCDATE() AS [StartTime]|
+|startTime?|
+|>>startTime|
+
+'''Exercise the code...'''
+!|Execute Procedure|dbFitDemo.usp_PerformanceTimingTest|
+|DelaySeconds|
+|1|
+
+'''Ensure that the duration is less than the threshold for this query...'''
+!|Query|SELECT @maxDuration AS [MaxDuration], CASE WHEN DATEDIFF(second, @startTime, GETUTCDATE()) > @maxDuration THEN 'FAIL Actual duration was ' + CAST(DATEDIFF(second, @startTime, GETUTCDATE()) AS varchar(32)) + ' seconds' ELSE 'PASS' END AS [Result]|
+|MaxDuration|Result|
+|<<maxDuration|PASS|

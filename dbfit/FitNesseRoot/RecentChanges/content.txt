@@ -1,0 +1,11 @@
+|Log4TsqlDbAlphaRegressionTests.ExceptionHandlerTestSuite.ReturnsExpectedOutputParameters||16:54:50 Sat, Aug 12, 2017|
+|Log4TsqlDbAlphaRegressionTests.ExceptionHandlerTestSuite.RecordsSessionInfo||16:07:55 Thu, Nov 28, 2013|
+|Log4TsqlDbAlphaRegressionTests.JournalWriterTestSuite.RecordsExceptionId||14:24:04 Wed, Nov 27, 2013|
+|Log4TsqlDbAlphaRegressionTests.JournalWriterTestSuite.RecordsSessionInfo||14:52:06 Fri, Nov 15, 2013|
+|Log4TsqlDbAlphaRegressionTests.ExceptionHandlerTestSuite.ReturnsFormattedMessageOnPopulatedContext||14:48:12 Fri, Nov 15, 2013|
+|Log4TsqlDbAlphaRegressionTests.ExceptionHandlerTestSuite.ReturnsFormattedMessageOnNullContext||14:47:58 Fri, Nov 15, 2013|
+|Log4TsqlDbAlphaRegressionTests.ExceptionHandlerTestSuite.RecordsExceptionInfo||14:47:13 Fri, Nov 15, 2013|
+|Log4TsqlDbAlphaRegressionTests||13:30:06 Thu, Nov 14, 2013|
+|Log4TsqlDbAlphaRegressionTests.JournalWriterTestSuite.RecordsJournalDetail||13:29:08 Thu, Nov 14, 2013|
+|Log4TsqlDbAlphaRegressionTests.JournalWriterTestSuite.RecordsJournalHeaderCorrectly||17:32:19 Wed, Nov 13, 2013|
+|Log4TsqlDbAlphaRegressionTests.ExceptionHandlerTestSuite||14:57:56 Wed, Nov 06, 2013|

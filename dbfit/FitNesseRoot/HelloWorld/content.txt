@@ -1,0 +1,12 @@
+!define COMMAND_PATTERN {%m -r fitnesse.fitserver.FitServer %p}
+!define TEST_RUNNER {fitsharp\Runner.exe}
+!define PATH_SEPARATOR {;}
+!path fitsharp\*.dll
+
+!|dbfit.SqlServerTest|
+
+!|Connect|Data Source=DATA-CENTRIC-V3,50505;Initial Catalog=Log4TSql;Integrated Security=SSPI|
+
+!|Query|SELECT 'test' AS [x]|
+|x|
+|test|

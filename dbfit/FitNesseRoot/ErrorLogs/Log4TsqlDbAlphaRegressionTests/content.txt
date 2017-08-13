@@ -1,0 +1,7 @@
+!3 !-fit:fitsharp\Runner.exe-!
+|'''Date: '''| 4:54:58 PM (BST) on Saturday, August 12, 2017 |
+|'''Test Page: '''|.Log4TsqlDbAlphaRegressionTests|
+|'''Command: '''| !-fitsharp\Runner.exe -r fitnesse.fitserver.FitServer C:\_dev\github-log4tsql\dbfit\fitsharp\dbfit.dll;C:\_dev\github-log4tsql\dbfit\fitsharp\dbfit.sqlserver.dll;C:\_dev\github-log4tsql\dbfit\fitsharp\fit.dll;C:\_dev\github-log4tsql\dbfit\fitsharp\fitSharp.dll DATA-CENTRIC-V5 8085 3-! |
+|'''Exit code: '''| 0 |
+|'''Time elapsed: '''| 2.283 seconds |
+

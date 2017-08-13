@@ -1,0 +1,25 @@
+!3 Demonstrate what happens when a module under test raises an exception
+
+See [[Passing Performance Test][PerformanceTestPassing]] for more information on how to configure tests like this.
+
+'''Use a parameter to define the maximum number of seconds that this procedure is allowed take'''
+|Set parameter|maxDuration|2|
+
+'''Get the current date/time from the database'''
+!|Query|SELECT GETUTCDATE() AS [StartTime]|
+|startTime?|
+|>>startTime|
+
+'''Exercise the code...'''
+''usp_PerformanceTimingTest is designed to raise a SQL exception if !-DelaySeconds-! is higher than 9''
+!|Execute Procedure|dbFitDemo.usp_PerformanceTimingTest|
+|DelaySeconds|
+|10|
+
+'''Ensure that the duration is less than the threshold for this query...'''
+!|Query|SELECT @maxDuration AS [MaxDuration], CASE WHEN DATEDIFF(second, @startTime, GETUTCDATE()) > @maxDuration THEN 'FAIL Actual duration was ' + CAST(DATEDIFF(second, @startTime, GETUTCDATE()) AS varchar(32)) + ' seconds' ELSE 'PASS' END AS [Result]|
+|MaxDuration|Result|
+|<<maxDuration|PASS|
+
+See [[Passing Performance Test][PerformanceTestPassing]] for an example of what this test looks like when it passes or [[Passing Performance Test][PerformanceTestPassing]] for what it looks like when it passes.
+

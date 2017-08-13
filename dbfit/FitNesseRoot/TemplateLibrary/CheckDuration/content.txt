@@ -1,0 +1,4 @@
+'''Ensure that the duration is less than the threshold for this query...'''
+!|Query|SELECT @maxDuration AS [MaxDuration], CASE WHEN DATEDIFF(second, @startTime, GETDATE()) <= @maxDuration THEN 'PASS' ELSE 'FAIL Actual duration was ' + CAST(DATEDIFF(second, @startTime, GETDATE()) AS varchar(32)) + ' seconds' END AS [Result]|
+|MaxDuration|Result|
+|<<maxDuration|PASS|

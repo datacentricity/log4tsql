@@ -1,0 +1,50 @@
+'''NB''' No database connection is required on this page as it is contained in the Setup page within this test suite (referenced above).
+
+!3 Expect CRMCORESTG.dbFitDemo.usp_PerformanceTimingTest to complete in less than 2 seconds
+
+''Variables can be fined to make the remaining secions easier to read''
+!define GET_START_TIME {SELECT GETUTCDATE() AS [StartTime]}
+!define CHECK_DURATION {SELECT @maxDuration AS [MaxDuration], CASE WHEN DATEDIFF(second, @startTime, GETUTCDATE()) <= @maxDuration THEN 'PASS' ELSE 'FAIL Actual duration was ' + CAST(DATEDIFF(second, @startTime, GETUTCDATE()) AS varchar(32)) + ' seconds' END AS [Result]}
+
+'''Use a parameter to define the maximum number of seconds that this procedure is allowed take'''
+|Set parameter|maxDuration|2|
+''Note that due to the way duration tests have to be run in Dbfit, it is not practical to measure durations below about two seconds.''
+
+'''Get the current date/time from the database and store it in a page variable called startTime'''
+''We use camel case for the variable name so that the wiki doesn't think !-StartTime-! is the name of a wiki page.''
+''Notice how we precede the variable name with ">>" to get the value from the result set into the local variable.''
+
+!|Query|${GET_START_TIME}|
+|startTime?|
+|>>startTime|
+
+'''Exercise the code...'''
+''We use "Execute Procedure" because we're not interested in any result set.
+We specify input parameters in tabular form like this.
+Obviously this is just test code so we can govern pass or fail by the value we supply for !-DelaySeconds-!''
+
+!|Execute Procedure|dbFitDemo.usp_PerformanceTimingTest|
+|DelaySeconds|
+|1|
+
+Multiple input parameters can be specified like this:
+# Use |Comment| so Dbfit doersn't treat this as a command fixture and preced with "-" so that the the "Comment" row is not displayed
+-|Comment|
+|Execute Procedure|dbo.ebkInstrumentsSPGetListForDealId|
+|dealId|startDate|endDate|
+|100126817|01 JUN 2012 00:00:00.000|31 DEC 2012 23:59:59.997|
+
+'''Ensure that the duration is less than the threshold for this query...'''
+We use the value of startTime that we collected in the first step and the SQL command will calculate the duration in seconds and return a value to indicate pass or fail in the result column.
+
+We can pass parameter values for maxDuration and startTime from the page to the query just by adding an "@" symbol (DbFit works the rest out for us.
+
+The second two rows in this table fixure are the expected results if the test passes - any duration greater than maxDuration will generate a different result set and the test will fail.
+
+Notice that we use "<<maxDuration" to populate the !-MaxDuration-! column in the expected result set.
+
+!|Query|${CHECK_DURATION}|
+|MaxDuration|Result|
+|<<maxDuration|PASS|
+
+See [[Failing Performance Test][PerformanceTestFailing]] for an example of what this test looks like when it fails.

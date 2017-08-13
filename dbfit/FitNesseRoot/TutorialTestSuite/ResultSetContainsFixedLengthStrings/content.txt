@@ -1,0 +1,31 @@
+!3 Compare results for Employee: Jan
+
+-|Comment|
+|!c '''Sales Person'''|!c '''Customer Type'''|!c '''Some Other Parameter'''|
+|''Jan''|''A''|''NULL''|
+
+''Use this block to replicate this call in SSMS...''
+{{{
+EXEC CRMCORESTG.dbFitDemo.usp_TutorialTestSuiteGetResultSet
+	  @CustomerType       = 'A'
+	, @SalesPerson        = 'Jan'
+	, @SomeOtherParameter = NULL
+GO
+}}}
+
+|Set Parameter|pCustomerType          |A|
+|Set Parameter|pSalesPerson           |Jan|
+|Set Parameter|pSomeOtherParameter    |NULL|
+
+This result set includes one row (Customer ID 10) where the customer name has a number of training spaces.  By default, this test will fail because Dbfit always trims training spaces whilst SQL Server does not if the data type is char or nchar.
+
+There are two elements to fix this:
+
+ 1 Use !-|set option|fixed length string parsing|true|-! in this test (or in the SetUp page as in this scenario)
+ 2 Wrap the offending strings in single quaotes as demonstrated below
+
+!|Query|EXEC dbFitDemo.usp_TutorialTestSuiteGetResultSet @pCustomerType, @pSalesPerson, @pSomeOtherParameter|
+|CustomerId|CustomerName|DateOfBirth|CustomerType|SalesPerson|YearToDateSales|
+|4|Edward|1975-02-13|V|Jan|552.00|
+|1|'Tom   '|1965-04-23|F|Jan|150.00|
+

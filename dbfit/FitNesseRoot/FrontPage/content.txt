@@ -1,0 +1,22 @@
+!c !3 Regression testing suite - Powered by !-DbFit-! & Fitnesse
+
+!4 To view sample tests click on the link below:
+
+http://localhost:8085/HelloWorld
+
+!3 You must read this section before adding new tests or test suites
+!see TutorialTestSuite for an explanation of test structure, naming conventions and basic examples for use with Log4TSql.
+
+!3 Log4TSql Database Regression Tests
+Log4TsqlDbAlphaRegressionTests should only contain tests to validate backwards compatibility between the original Alpha SQL2005 version and any future version.
+
+!3 Log4TSql Database Integration Tests
+Log4TsqlDbBetaIntegrationTests contain tests for current and emerging functionality
+
+
+!3 Wiki-Code Block Templates
+TemplateLibrary can be used to define commonly used fixtures, for example fetching the current date-time from the database into a local variable or comparing that value with some later date-time to test that a run time is within certain bounds.  These code blocks can then be inserted on any other page where they are required.
+
+!4 Other areas of interest:
+DbFit - landing page for those completely new to Db-Fit and Fitnesse including Db-Fit command reference and acceptance tests
+RecentChanges - lists all recent changes to all test suites

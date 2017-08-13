@@ -1,0 +1,7 @@
+!3 !-fit:fitsharp\Runner.exe-!
+|'''Date: '''| 5:42:20 PM (GMT) on Wednesday, November 27, 2013 |
+|'''Test Page: '''|.Log4TsqlDbAlphaRegressionTests.ExceptionHandlerTestSuite.RecordsExceptionInfo|
+|'''Command: '''| !-fitsharp\Runner.exe -r fitnesse.fitserver.FitServer Z:\_dev\Log4TSql\branches\SQL2008Beta1\dbfit\fitsharp\dbfit.dll;Z:\_dev\Log4TSql\branches\SQL2008Beta1\dbfit\fitsharp\dbfit.sqlserver.dll;Z:\_dev\Log4TSql\branches\SQL2008Beta1\dbfit\fitsharp\fit.dll;Z:\_dev\Log4TSql\branches\SQL2008Beta1\dbfit\fitsharp\fitSharp.dll DATA-CENTRIC-V1 8085 6-! |
+|'''Exit code: '''| 1 |
+|'''Time elapsed: '''| 0.623 seconds |
+

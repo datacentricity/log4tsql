@@ -1,0 +1,61 @@
+'''NB''' No database connection is required on this page as it is contained in the Setup page within this test suite (referenced above).
+
+!3 Compare results for Employee: Sue
+
+'''Comment tables like this are not required for the test but it is good practice to display the key test conditions in a way that can be quickly understood'''
+
+# Use |Comment| so Dbfit doesn't treat this as a command fixture and preced with "-" so that the the "Comment" row is not displayed
+-|Comment|
+|!c '''Sales Person'''|!c '''Customer Type'''|!c '''Some Other Parameter'''|
+|''Sue''|''V''|''NULL''|
+
+''In the comment table above, we use "!c" to centre the text within a cell, wrap values in three single quotes to make them bold or two single quotes to display values as italics.  The raw text definition looks like this:''
+
+{{{
+-|Comment|
+|!c '''Sales Person'''|!c '''Customer Type'''|!c '''Some Other Parameter'''|
+|''Sue''|''V''|''NULL''|
+}}}
+
+
+'''It is good practice to include a block of text to replicate the call from within SQL server Management Studio.'''
+
+This makes it easy to generate the expected results when preparing integration tests for known-good code. However, you need to be careful to keep the procedure call and the test condition values below in sync.
+
+''Use this block to replicate this call in SSMS...''
+{{{
+EXEC CRMCORESTG.dbFitDemo.usp_TutorialTestSuiteGetResultSet
+	  @CustomerType       = 'V'
+	, @SalesPerson        = 'Sue'
+	, @SomeOtherParameter = NULL
+GO
+}}}
+
+Although the "Query" fixture supports specifying input parameters in-line, specifying them in a table format like this makes them easier to read.
+
+''We use camel case for the variable name so that the wiki doesn't think parameter names actually refer to a wiki page''
+
+#The space formatting shown here is not required but can make the raw text easier to understand
+|Set Parameter|pCustomerType          |V|
+|Set Parameter|pSalesPerson           |Sue|
+|Set Parameter|pSomeOtherParameter    |NULL|
+
+''Note that we specify NULL values as "NULL" (without quotes). Specify an empty string with two single quotes.''
+
+'''There are three elements to the "Query" fixture'''
+
+ 1 The Query definition including the parameters (named as per the above "Set Parameter" table with an "@" added
+ 2 The column names
+ 3 The expect row values
+
+!|Query|EXEC dbFitDemo.usp_TutorialTestSuiteGetResultSet @pCustomerType, @pSalesPerson, @pSomeOtherParameter|
+|CustomerId|CustomerName|DateOfBirth|CustomerType|SalesPerson|YearToDateSales|
+|2|Steven|1965-01-03|V|Sue|151.00|
+|14|Jeremy|1981-07-13|V|Sue|357.00|
+|16|Oliver|1954-08-23|V|Sue|258.00|
+|18|Martin|1965-09-03|V|Sue|359.00|
+|20|Dennis|1971-10-13|V|Sue|150.00|
+
+By default, Dbfit doesn't care about row order.  The stored procedure in this test returns results ordered by customer name but the expected results above are ordered by Id.
+
+

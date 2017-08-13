@@ -1,4 +1,4 @@
-﻿create   procedure [CommonModuleTests].[test log.ExceptionHandler inserts columns in correct order]
+﻿CREATE   procedure [CommonModuleTests].[test log.ExceptionHandler inserts columns in correct order]
 as
 begin
 	--!
@@ -28,7 +28,7 @@ begin
 	--!
 	--! NOTE: DO NOT fake the SqlException table for this INSERT check
 	--! so that if any new NOT NULL colunns are added in the future but not
-	--! catered for by default constraint or changes in log4ExceptionHandler
+	--! catered for by default constraint or changes in log.4ExceptionHandler
 	--! then this test will fail
 	--!
 	--! If we are faking SessionInfoOutput we need to ensure that

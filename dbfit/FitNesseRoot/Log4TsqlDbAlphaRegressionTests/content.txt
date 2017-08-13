@@ -1,0 +1,8 @@
+# Set the .Net library definitions here for the entire suite 
+!define COMMAND_PATTERN {%m -r fitnesse.fitserver.FitServer %p}
+!define TEST_RUNNER {fitsharp\Runner.exe}
+!define PATH_SEPARATOR {;}
+!path fitsharp\*.dll
+
+!contents -R2 -g -p -f -h
+

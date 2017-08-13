@@ -3,17 +3,17 @@
   @JournalId		int
 )
 as
-/**************************************************************************************************
+/**********************************************************************************************************************
 
 Properties
-==========
+=====================================================================================================================
 PROCEDURE NAME:		[log4Utils].[JournalPrinter]
 DESCRIPTION:		Prints the contents of JournalDetail for the specified Journal ID respecting all
 					line feeds and/or carriage returns
 DATE OF ORIGIN:		03-MAY-2011
 ORIGINAL AUTHOR:	Greg M. Lucas (data-centric solutions ltd. http://www.data-centric.co.uk)
-BUILD DATE:			01-MAR-2015
-BUILD VERSION:		0.0.13
+BUILD DATE:			13-AUG-2017
+BUILD VERSION:		2.1.0
 DEPENDANTS:			None
 DEPENDENCIES:		None
 
@@ -34,30 +34,33 @@ Additional Notes
 ================
 
 Revision history
-==================================================================================================
-ChangeDate		Author	Version		Narrative
-============	======	=======		==============================================================
-03-MAY-2011		GML		v0.0.4		Created
-------------	------	-------		--------------------------------------------------------------
-05-NOV-2011		GML		v0.0.8		Now calls log4.PrintString (which is SQL2005 compatible)
-------------	------	-------		--------------------------------------------------------------
+=====================================================================================================================
+ChangeDate    Author   Version   Narrative
+============  ======   =======   ====================================================================================
+03-MAY-2011   GML      v0.0.4    Created
+------------  ------   -------   ------------------------------------------------------------------------------------
+05-NOV-2011   GML      v0.0.8    Now calls log4.PrintString (which is SQL2005 compatible)
+------------  ------   -------   ------------------------------------------------------------------------------------
+12-AUG-2017   GML      v2.1.0    Code review, changed license to MIT as part of migration to GitHub
+------------  ------   -------   ------------------------------------------------------------------------------------
 
-=================================================================================================
-(C) Copyright 2006-14 data-centric solutions ltd. (http://log4tsql.sourceforge.net/)
+=====================================================================================================================
+(C) Copyright 2006-17 Greg M Lucas. (https://github.com/datacentricity/log4tsql)
 
-This library is free software; you can redistribute it and/or modify it under the terms of the
-GNU Lesser General Public License as published by the Free Software Foundation (www.fsf.org);
-either version 3.0 of the License, or (at your option) any later version.
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+documentation files (the "Software"), to deal in the Software without restriction, including without limitation
+the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and
+to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-See the GNU Lesser General Public License for more details.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-You should have received a copy of the GNU Lesser General Public License along with this
-library; if not, you can find it at http://www.opensource.org/licenses/lgpl-3.0.html
-or http://www.gnu.org/licenses/lgpl.html
+You should have received a copy of the MIT License along with this library; if not, you can find
+it at https://opensource.org/licenses/MIT or https://choosealicense.com/licenses/mit/
 
-**************************************************************************************************/
+**********************************************************************************************************************/
 
 begin
 	set transaction isolation level read uncommitted;
@@ -88,7 +91,6 @@ begin
 
 	return;
 end
-
-GO
-EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = N'Prints the contents of JournalDetail for the specified Journal ID respecting all line feeds and/or carriage returns', @level0type = N'SCHEMA', @level0name = N'log4Utils', @level1type = N'PROCEDURE', @level1name = N'JournalPrinter';
+go
+exec sp_addextendedproperty @name = N'MS_Description', @value = N'Prints the contents of JournalDetail for the specified Journal ID respecting all line feeds and/or carriage returns', @level0type = N'SCHEMA', @level0name = N'log4Utils', @level1type = N'PROCEDURE', @level1name = N'JournalPrinter';
 

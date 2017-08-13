@@ -29,6 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Releases", "Releases", "{1C
 		Releases\Log4TSql v1.0.0 to v2.0.0.migrate.sql = Releases\Log4TSql v1.0.0 to v2.0.0.migrate.sql
 		Releases\Log4TSql v1.0.0.deploy.sql = Releases\Log4TSql v1.0.0.deploy.sql
 		Releases\Log4TSql v2.0.0.deploy.sql = Releases\Log4TSql v2.0.0.deploy.sql
+		Releases\Log4TSql v2.1.0.deploy.sql = Releases\Log4TSql v2.1.0.deploy.sql
 	EndProjectSection
 EndProject
 Global

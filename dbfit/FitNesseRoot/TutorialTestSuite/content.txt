@@ -1,0 +1,12 @@
+'''!see >ReadMeFirst for an an explanation of test structure, naming conventions and basic examples for use with SalesIBD Core DB.'''
+
+!contents -R2
+
+'''The following lines need to appear somewhere in the test suite hierarchy'''
+''They already exist in test master suite so you will probably not need to add them to any of your sub-wikis''
+# Set the .Net library definitions here for the entire suite 
+!define COMMAND_PATTERN {%m -r fitnesse.fitserver.FitServer %p}
+!define TEST_RUNNER {fitsharp\Runner.exe}
+!define PATH_SEPARATOR {;}
+!path fitsharp\*.dll
+

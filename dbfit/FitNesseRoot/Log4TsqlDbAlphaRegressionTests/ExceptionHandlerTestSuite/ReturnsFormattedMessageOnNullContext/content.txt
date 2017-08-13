@@ -1,0 +1,3 @@
+!|Query|EXEC ExceptionHandlerAlphaTestHelpers.ReturnsFormattedMessage NULL|
+|returnMessage|
+|ERROR! "This is a test exception"|

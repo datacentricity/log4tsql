@@ -1,0 +1,6 @@
+!| Store Query | SELECT @@SERVERNAME AS [serverName], DB_NAME() AS [databaseName], [host_name] AS [hostName], [program_name] AS [programName], nt_user_name AS [nTUserName], login_name AS [loginName], original_login_name AS [originalLoginName] FROM master.sys.dm_exec_sessions WITH (NOLOCK) WHERE session_id = @@SPID | expected |
+
+!| Store Query | EXEC ExceptionHandlerAlphaTestHelpers.RecordsSessionInfo NULL | actual |
+
+| compare stored queries | expected | actual |
+| databaseName | hostName | programName | nTUsername | loginName | originalLoginName |

@@ -1,0 +1,26 @@
+!3 Compare results for Employee: Sue
+
+-|Comment|
+|!c '''Sales Person'''|!c '''Customer Type'''|!c '''Some Other Parameter'''|
+|''Sue''|''V''|''NULL''|
+
+''Use this block to replicate this call in SSMS...''
+{{{
+EXEC CRMCORESTG.dbFitDemo.usp_TutorialTestSuiteGetResultSet
+	  @CustomerType       = 'V'
+	, @SalesPerson        = 'Sue'
+	, @SomeOtherParameter = NULL
+GO
+}}}
+
+|Set Parameter|pCustomerType          |V|
+|Set Parameter|pSalesPerson           |Sue|
+|Set Parameter|pSomeOtherParameter    |NULL|
+
+!|Query|EXEC dbFitDemo.usp_TutorialTestSuiteGetResultSet @pCustomerType, @pSalesPerson, @pSomeOtherParameter|
+|CustomerId|CustomerName|DateOfBirth|CustomerType|SalesPerson|YearToDateSales|
+|20|Dennis|1971-10-13|V|Sue|150.00|
+|14|Jeremy|1981-07-13|V|Sue|357.00|
+|18|Martin|1965-09-03|V|Sue|359.00|
+|16|Oliver|1954-08-23|V|Sue|258.00|
+|2|Steven|1965-01-03|V|Sue|151.00|

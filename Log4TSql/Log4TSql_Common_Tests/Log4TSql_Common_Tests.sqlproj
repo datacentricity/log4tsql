@@ -63,9 +63,11 @@
     <Folder Include="Test Classes" />
     <Folder Include="CommonSchemaTests\" />
     <Folder Include="StaticDataTests\" />
+    <Folder Include="LegacyTestHelpers" />
+    <Folder Include="ExceptionHandlerAlphaTestHelpers\" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="CommonModuleTests\test SessionInfoOutput outputs correct session info.sql" />
+    <Build Include="CommonModuleTests\test log4Private.SessionInfoOutput outputs correct session info.sql" />
     <Build Include="Test Classes\CommonModuleTests.sql" />
     <Build Include="CommonSchemaTests\test log4Private.JournalDetail.Id primary key is unique.sql" />
     <Build Include="CommonSchemaTests\test log4Private.Journal.Id primary key is unique.sql" />
@@ -103,6 +105,30 @@
     <Build Include="CommonModuleTests\test log.ExceptionHandler allows custom error procedure name.sql" />
     <Build Include="CommonModuleTests\test log4.ExceptionHandler replaces any null error info.sql" />
     <Build Include="CommonModuleTests\test log4.ExceptionHandler outputs correct ReturnMessage on null error info.sql" />
+    <Build Include="CommonModuleTests\test log4.ExceptionHandler ignores input error values.sql" />
+    <Build Include="ExceptionHandlerAlphaTestHelpers\RecordsExceptionInfo.sql" />
+    <Build Include="ExceptionHandlerAlphaTestHelpers\RecordsSessionInfo.sql" />
+    <Build Include="ExceptionHandlerAlphaTestHelpers\ReturnsExpectedOutputParameters.sql" />
+    <Build Include="ExceptionHandlerAlphaTestHelpers\ReturnsFormattedMessage.sql" />
+    <Build Include="ExceptionHandlerAlphaTestHelpers\ExceptionHandlerAlphaTestHelpers.sql" />
+    <Build Include="CommonModuleTests\test log4.JournalWriter replaces null inputs.sql" />
+    <Build Include="CommonModuleTests\test log4.JournalWriter records %40ExtraInfo when populated.sql" />
+    <Build Include="CommonModuleTests\test log4.JournalWriter outputs new JournalId.sql" />
+    <Build Include="CommonModuleTests\test log4.JournalWriter does not record %40ExtraInfo when empty.sql" />
+    <Build Include="CommonModuleTests\test log4.JournalWriter calls log4Private.SessionInfoOutput.sql" />
+    <Build Include="CommonModuleTests\test log4.JournalWriter records absence of valid %40Severity in ExtraInfo.sql" />
+    <Build Include="CommonModuleTests\test log4.JournalWriter does not record %40ExtraInfo when null.sql" />
+    <Build Include="CommonModuleTests\test log4.JournalWriter captures correct Session Id and Server Name.sql" />
+    <Build Include="CommonModuleTests\test log4.JournalWriter inserts log4Private.Journal columns in the correct order.sql" />
+    <Build Include="CommonModuleTests\test log4.JournalWriter returns error number after handling exception.sql" />
+    <Build Include="CommonModuleTests\test log4.JournalWriter hides error after handling exception.sql" />
+    <Build Include="CommonModuleTests\test log4.JournalWriter calls ExceptionHandler on error.sql" />
+    <Build Include="CommonModuleTests\test log4.ExceptionHandler returns error number after handling exception.sql" />
+    <Build Include="CommonModuleTests\test log4.ExceptionHandler hides error after handling exception.sql" />
+    <Build Include="CommonModuleTests\test log4.ExceptionHandler records internal log4Private.SessionInfoOutput error.sql" />
+    <Build Include="CommonModuleTests\test log4.ExceptionHandler records internal error.sql" />
+    <Build Include="CommonModuleTests\test log4.ExceptionHandler outputs valid values on internal error.sql" />
+    <Build Include="CommonModuleTests\test log.ExceptionHandler inserts columns in correct order on internal error.sql" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Log4TSql_Common\Log4TSql_Common.sqlproj">
@@ -116,6 +142,11 @@
     <ArtifactReference Include="..\dacpacs\tSQLt_SAFE_2012.dacpac">
       <HintPath>..\dacpacs\tSQLt_SAFE_2012.dacpac</HintPath>
       <SuppressMissingDependenciesErrors>True</SuppressMissingDependenciesErrors>
+    </ArtifactReference>
+    <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\110\SqlSchemas\master.dacpac">
+      <HintPath>$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\110\SqlSchemas\master.dacpac</HintPath>
+      <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+      <DatabaseVariableLiteralValue>master</DatabaseVariableLiteralValue>
     </ArtifactReference>
   </ItemGroup>
   <ItemGroup>
