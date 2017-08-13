@@ -20,7 +20,7 @@ DESCRIPTION:		Adds a journal entry summarising task progress, completion or fail
 DATE OF ORIGIN:		01-DEC-2006
 ORIGINAL AUTHOR:	Greg M. Lucas (data-centric solutions ltd. http://www.data-centric.co.uk)
 BUILD DATE:			13-AUG-2017
-BUILD VERSION:		2.1.0
+BUILD VERSION:		2.1.1
 DEPENDANTS:			Various
 DEPENDENCIES:		[log4Private].[SessionInfoOutput]
 					[log4].[ExceptionHandler]

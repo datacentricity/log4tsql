@@ -13,7 +13,7 @@ DESCRIPTION:		Prints the contents of JournalDetail for the specified Journal ID 
 DATE OF ORIGIN:		03-MAY-2011
 ORIGINAL AUTHOR:	Greg M. Lucas (data-centric solutions ltd. http://www.data-centric.co.uk)
 BUILD DATE:			13-AUG-2017
-BUILD VERSION:		2.1.0
+BUILD VERSION:		2.1.1
 DEPENDANTS:			None
 DEPENDENCIES:		None
 

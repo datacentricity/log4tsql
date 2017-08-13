@@ -19,7 +19,7 @@ DESCRIPTION:     Outputs session info from master.sys.dm_exec_sessions for the c
 DATE OF ORIGIN:  15-APR-2008
 ORIGINAL AUTHOR: Greg M. Lucas (data-centric solutions ltd. http://www.data-centric.co.uk)
 BUILD DATE:      13-AUG-2017
-BUILD VERSION:   2.1.0
+BUILD VERSION:   2.1.1
 DEPENDANTS:      log4.ExceptionHandler
                  log4.JournalWriter
 DEPENDENCIES:    None (but only works fully on non-azure instances)
@@ -42,6 +42,8 @@ ChangeDate    Author   Version   Narrative
 ------------  ------   -------   ------------------------------------------------------------------------------------
 12-AUG-2017   GML      v2.1.0    Code review, changed license to MIT as part of migration to GitHub
                                  Refactored Azure-related functionality to work both on- and off-prem
+------------  ------   -------   ------------------------------------------------------------------------------------
+13-AUG-2017   GML      v2.1.1    Fixed bug with invalid string for datetime when setting @SessionLoginTime on Azure
 ------------  ------   -------   ------------------------------------------------------------------------------------
 
 =====================================================================================================================
@@ -79,7 +81,7 @@ begin
 				set @NTUsername			= 'N/S in Azure'
 				set @LoginName			= 'N/S in Azure'
 				set @OriginalLoginName	= 'N/S in Azure'
-				set @SessionLoginTime	= 'N/S in Azure'
+				set @SessionLoginTime	= null
 			end
 		else
 			begin

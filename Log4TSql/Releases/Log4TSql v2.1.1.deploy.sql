@@ -1,12 +1,12 @@
 use master;
-if db_id(N'Log4TSql_v2_1_0') > 0
-	drop database [Log4TSql_v2_1_0];
+if db_id(N'Log4TSql') > 0
+	drop database [Log4TSql];
 go
 
-create database [Log4TSql_v2_1_0]
+create database [Log4TSql]
 go
 
-use [Log4TSql_v2_1_0] ;
+use [Log4TSql] ;
 go
 
 /**********************************************************************************************************************
@@ -283,7 +283,7 @@ DESCRIPTION:     Outputs session info from master.sys.dm_exec_sessions for the c
 DATE OF ORIGIN:  15-APR-2008
 ORIGINAL AUTHOR: Greg M. Lucas (data-centric solutions ltd. http://www.data-centric.co.uk)
 BUILD DATE:      13-AUG-2017
-BUILD VERSION:   2.1.0
+BUILD VERSION:   2.1.1
 DEPENDANTS:      log4.ExceptionHandler
                  log4.JournalWriter
 DEPENDENCIES:    None (but only works fully on non-azure instances)
@@ -306,6 +306,8 @@ ChangeDate    Author   Version   Narrative
 ------------  ------   -------   ------------------------------------------------------------------------------------
 12-AUG-2017   GML      v2.1.0    Code review, changed license to MIT as part of migration to GitHub
                                  Refactored Azure-related functionality to work both on- and off-prem
+------------  ------   -------   ------------------------------------------------------------------------------------
+13-AUG-2017   GML      v2.1.1    Fixed bug with invalid string for datetime when setting @SessionLoginTime on Azure
 ------------  ------   -------   ------------------------------------------------------------------------------------
 
 =====================================================================================================================
@@ -343,7 +345,7 @@ begin
 				set @NTUsername			= 'N/S in Azure'
 				set @LoginName			= 'N/S in Azure'
 				set @OriginalLoginName	= 'N/S in Azure'
-				set @SessionLoginTime	= 'N/S in Azure'
+				set @SessionLoginTime	= null
 			end
 		else
 			begin
@@ -450,8 +452,7 @@ begin
 	set nocount off
 end
 go
-exec sp_addextendedproperty @name = N'MS_Description', @value = N'Outputs session info from master.sys.dm_exec_sessions for the current @@SPID', @level0type = N'SCHEMA', @level0name = N'log4Private', @level1type = N'PROCEDURE', @level1name = N'SessionInfoOutput';
-go
+execute sp_addextendedproperty @name = N'MS_Description', @value = N'Outputs session info from master.sys.dm_exec_sessions for the current @@SPID', @level0type = N'SCHEMA', @level0name = N'log4Private', @level1type = N'PROCEDURE', @level1name = N'SessionInfoOutput';
 
 
 if object_id('[log4].[GetJournalControl]') is not null
@@ -478,7 +479,7 @@ DESCRIPTION:		Returns the ON/OFF value for the specified Journal Name, or Group 
 DATE OF ORIGIN:		15-APR-2008
 ORIGINAL AUTHOR:	Greg M. Lucas (data-centric solutions ltd. http://www.data-centric.co.uk)
 BUILD DATE:			13-AUG-2017
-BUILD VERSION:		2.1.0
+BUILD VERSION:		2.1.1
 DEPENDANTS:         Various
 DEPENDENCIES:       None
 
@@ -590,7 +591,7 @@ DESCRIPTION:        Returns a string describing the time elapsed between start a
 DATE OF ORIGIN:		16-FEB-2007
 ORIGINAL AUTHOR:	Greg M. Lucas (data-centric solutions ltd. http://www.data-centric.co.uk)
 BUILD DATE:			13-AUG-2017
-BUILD VERSION:		2.1.0
+BUILD VERSION:		2.1.1
 DEPENDANTS:         Various
 DEPENDENCIES:       None
 
@@ -709,7 +710,7 @@ DESCRIPTION:		Returns error info as output parameters and writes info to Excepti
 DATE OF ORIGIN:		01-DEC-2006
 ORIGINAL AUTHOR:	Greg M. Lucas (data-centric solutions ltd. http://www.data-centric.co.uk)
 BUILD DATE:			13-AUG-2017
-BUILD VERSION:		2.1.0
+BUILD VERSION:		2.1.1
 DEPENDANTS:			Various
 DEPENDENCIES:		log4.SessionInfoOutput
 
@@ -979,7 +980,7 @@ DESCRIPTION:		Adds a journal entry summarising task progress, completion or fail
 DATE OF ORIGIN:		01-DEC-2006
 ORIGINAL AUTHOR:	Greg M. Lucas (data-centric solutions ltd. http://www.data-centric.co.uk)
 BUILD DATE:			13-AUG-2017
-BUILD VERSION:		2.1.0
+BUILD VERSION:		2.1.1
 DEPENDANTS:			Various
 DEPENDENCIES:		[log4Private].[SessionInfoOutput]
 					[log4].[ExceptionHandler]
@@ -1231,7 +1232,7 @@ DESCRIPTION:		Returns all Exceptions matching the specified search criteria
 DATE OF ORIGIN:		01-DEC-2006
 ORIGINAL AUTHOR:	Greg M. Lucas (data-centric solutions ltd. http://www.data-centric.co.uk)
 BUILD DATE:			13-AUG-2017
-BUILD VERSION:		2.1.0
+BUILD VERSION:		2.1.1
 DEPENDANTS:			None
 DEPENDENCIES:		None
 
@@ -1413,7 +1414,7 @@ DESCRIPTION:		Returns all Journal entries matching the specified search criteria
 DATE OF ORIGIN:		01-DEC-2006
 ORIGINAL AUTHOR:	Greg M. Lucas (data-centric solutions ltd. http://www.data-centric.co.uk)
 BUILD DATE:			13-AUG-2017
-BUILD VERSION:		2.1.0
+BUILD VERSION:		2.1.1
 DEPENDANTS:			None
 DEPENDENCIES:		None
 
@@ -1620,7 +1621,7 @@ DESCRIPTION:		Prints the supplied string respecting all line feeds and/or carria
 DATE OF ORIGIN:		05-NOV-2011
 ORIGINAL AUTHOR:	Greg M. Lucas (data-centric solutions ltd. http://www.data-centric.co.uk)
 BUILD DATE:			13-AUG-2017
-BUILD VERSION:		2.1.0
+BUILD VERSION:		2.1.1
 DEPENDANTS:			None
 DEPENDENCIES:		None
 
@@ -1822,7 +1823,7 @@ DESCRIPTION:		Prints the contents of JournalDetail for the specified Journal ID 
 DATE OF ORIGIN:		03-MAY-2011
 ORIGINAL AUTHOR:	Greg M. Lucas (data-centric solutions ltd. http://www.data-centric.co.uk)
 BUILD DATE:			13-AUG-2017
-BUILD VERSION:		2.1.0
+BUILD VERSION:		2.1.1
 DEPENDANTS:			None
 DEPENDENCIES:		None
 
@@ -1928,7 +1929,7 @@ DESCRIPTION:		Deletes all Journal and Exception entries older than the specified
 DATE OF ORIGIN:		16-FEB-2007
 ORIGINAL AUTHOR:	Greg M. Lucas (data-centric solutions ltd. http://www.data-centric.co.uk)
 BUILD DATE:			13-AUG-2017
-BUILD VERSION:		2.1.0
+BUILD VERSION:		2.1.1
 DEPENDANTS:			None
 DEPENDENCIES:		None
 

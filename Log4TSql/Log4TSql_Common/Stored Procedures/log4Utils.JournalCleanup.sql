@@ -13,7 +13,7 @@ DESCRIPTION:		Deletes all Journal and Exception entries older than the specified
 DATE OF ORIGIN:		16-FEB-2007
 ORIGINAL AUTHOR:	Greg M. Lucas (data-centric solutions ltd. http://www.data-centric.co.uk)
 BUILD DATE:			13-AUG-2017
-BUILD VERSION:		2.1.0
+BUILD VERSION:		2.1.1
 DEPENDANTS:			None
 DEPENDENCIES:		None
 

@@ -14,7 +14,7 @@ DESCRIPTION:		Prints the supplied string respecting all line feeds and/or carria
 DATE OF ORIGIN:		05-NOV-2011
 ORIGINAL AUTHOR:	Greg M. Lucas (data-centric solutions ltd. http://www.data-centric.co.uk)
 BUILD DATE:			13-AUG-2017
-BUILD VERSION:		2.1.0
+BUILD VERSION:		2.1.1
 DEPENDANTS:			None
 DEPENDENCIES:		None
 
